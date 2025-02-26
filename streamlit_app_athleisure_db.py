@@ -8,7 +8,8 @@ st.title("Zena's Amazing Athleisure Catalog")
 
 
 # Get the current credentials
-session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session()
 my_dataframe = session.table("zenas_athleisure_db.products.catalog_for_website").select(col('color_or_style')).collect()
 
 style_selected = st.selectbox('Pick a sweatsuit color or style:',my_dataframe)
